@@ -1,5 +1,3 @@
-"""API каталога фантастических фильмов."""
-
 from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -11,8 +9,6 @@ app = FastAPI(
 
 
 class MovieCreate(BaseModel):
-    """Данные для добавления нового фильма."""
-
     model_config = ConfigDict(str_strip_whitespace=True)
 
     title: str = Field(
@@ -34,12 +30,9 @@ class MovieCreate(BaseModel):
 
 
 class Movie(MovieCreate):
-    """Фильм, хранящийся в каталоге."""
-
     id: int = Field(ge=1, description="Уникальный идентификатор фильма", examples=[1])
 
 
-# Временное хранилище в памяти. При перезапуске сервера данные сбрасываются.
 movies: list[Movie] = [
     Movie(id=1, title="Интерстеллар", director="Кристофер Нолан", year=2014),
     Movie(id=2, title="Матрица", director="Лана и Лилли Вачовски", year=1999),
@@ -49,7 +42,6 @@ movies: list[Movie] = [
 
 @app.get("/movies", response_model=list[Movie], summary="Получить список фильмов")
 def get_movies() -> list[Movie]:
-    """Вернуть все фильмы каталога."""
     return movies
 
 
@@ -60,7 +52,6 @@ def get_movies() -> list[Movie]:
     responses={status.HTTP_404_NOT_FOUND: {"description": "Фильм не найден"}},
 )
 def get_movie(movie_id: int) -> Movie:
-    """Найти фильм по идентификатору или вернуть ошибку 404."""
     for movie in movies:
         if movie.id == movie_id:
             return movie
@@ -83,7 +74,6 @@ def get_movie(movie_id: int) -> Movie:
     },
 )
 def create_movie(movie_data: MovieCreate) -> Movie:
-    """Добавить фильм, если фильма с таким названием ещё нет."""
     normalized_title = movie_data.title.casefold()
 
     if any(movie.title.casefold() == normalized_title for movie in movies):
