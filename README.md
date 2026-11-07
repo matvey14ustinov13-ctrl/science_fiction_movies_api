@@ -1,7 +1,6 @@
 # Science Fiction Movies API
 
-Учебный проект к уроку №10 «Статус-коды и обработка ошибок»: API каталога
-фантастических фильмов на **FastAPI**.
+API каталога фантастических фильмов на **FastAPI**.
 
 ## Возможности
 
@@ -14,11 +13,11 @@
 ## Структура проекта
 
 ```text
-science_fiction_movies_api/
-├── main.py            # приложение FastAPI и маршруты
-├── requirements.txt   # зависимости проекта
-├── README.md          # описание и инструкция по запуску
-└── .gitignore         # исключения для Git (в том числе venv/)
+homework/
+├── main.py
+├── requirements.txt
+├── README.md
+└── .gitignore
 ```
 
 ## Установка и запуск
@@ -26,7 +25,7 @@ science_fiction_movies_api/
 ### Windows
 
 ```powershell
-cd science_fiction_movies_api
+cd homework
 py -m venv venv
 venv\Scripts\activate
 pip install -r requirements.txt
@@ -36,7 +35,7 @@ uvicorn main:app --reload
 ### macOS / Linux
 
 ```bash
-cd science_fiction_movies_api
+cd homework
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt

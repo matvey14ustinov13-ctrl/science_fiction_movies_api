@@ -1,7 +1,4 @@
-"""API каталога фантастических фильмов.
-
-Домашнее задание к уроку №10: статус-коды и обработка ошибок.
-"""
+"""API каталога фантастических фильмов."""
 
 from fastapi import FastAPI, HTTPException, status
 from pydantic import BaseModel, ConfigDict, Field
